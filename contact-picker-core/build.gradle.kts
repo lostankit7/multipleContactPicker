@@ -12,10 +12,6 @@ kotlin {
             }
         }
     }
-    jvm("desktop")
-    js(IR) {
-        browser()
-    }
     listOf(
         iosX64(),
         iosArm64(),
@@ -26,15 +22,11 @@ kotlin {
         }
     }
 
-    sourceSets {
-
-    }
-
     explicitApi()
 }
 
 android {
-    namespace = "com.pseudoankit.contact-picker-core"
+    namespace = "com.pseudoankit.contact_picker_core"
     compileSdk = libs.versions.compileSdk.get().toInt()
 
     defaultConfig {
