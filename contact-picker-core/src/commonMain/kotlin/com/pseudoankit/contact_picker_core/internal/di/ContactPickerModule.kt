@@ -4,11 +4,31 @@ import com.pseudoankit.contact_picker_core.internal.data.repository.ContactPicke
 import com.pseudoankit.contact_picker_core.internal.domain.usecase.FetchAllContactsUseCase
 import com.pseudoankit.contact_picker_core.internal.domain.usecase.FetchPaginatedContactsUseCase
 
-public expect class ContactPickerModule {
 
-    internal val getFetchAllContactsUseCase: FetchAllContactsUseCase
+internal expect class ContactPickerModulePlatform {
+    internal val getContactPickerRepository: ContactPickerRepository
+}
 
-    internal val getFetchPaginatedContactsUseCase: FetchPaginatedContactsUseCase
+internal class ContactPickerModule(
+    private val contactPickerModulePlatform: ContactPickerModulePlatform
+) {
 
     internal val getContactPickerRepository: ContactPickerRepository
+        get() {
+            return contactPickerModulePlatform.getContactPickerRepository
+        }
+
+    internal val getFetchAllContactsUseCase: FetchAllContactsUseCase
+        get() {
+            return FetchAllContactsUseCase(
+                contactPickerRepository = getContactPickerRepository
+            )
+        }
+
+    internal val getFetchPaginatedContactsUseCase: FetchPaginatedContactsUseCase
+        get() {
+            return FetchPaginatedContactsUseCase(
+                contactPickerRepository = getContactPickerRepository
+            )
+        }
 }
