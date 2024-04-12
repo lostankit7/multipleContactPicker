@@ -1,16 +1,19 @@
 package com.pseudoankit.contact_picker_core
 
-import com.pseudoankit.contact_picker_core.internal.di.ContactPickerModule
+import com.pseudoankit.contact_picker_core.internal.di.ContactPickerModuleCommon
 import com.pseudoankit.contact_picker_core.model.ContactResult
 import com.pseudoankit.contact_picker_core.model.FetchContactsPayload
 
-public expect object ContactPickerController : ContactPickerControllerInternal
+public expect object ContactPickerController : InternalControllerDelegate
 
-public abstract class ContactPickerControllerInternal {
+/**
+ * This class is needed because we can't mix expect and non-expect methods in sinlge file
+ */
+public abstract class InternalControllerDelegate {
 
-    internal open var contactPickerModuleMutable: ContactPickerModule? = null
+    internal open var contactPickerModuleMutable: ContactPickerModuleCommon? = null
 
-    private val contactPickerModule: ContactPickerModule
+    private val contactPickerModule: ContactPickerModuleCommon
         get() {
             if (contactPickerModuleMutable == null) {
                 throw Exception()

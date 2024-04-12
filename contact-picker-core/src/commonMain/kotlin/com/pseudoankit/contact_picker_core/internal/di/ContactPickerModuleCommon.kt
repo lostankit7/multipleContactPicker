@@ -5,18 +5,13 @@ import com.pseudoankit.contact_picker_core.internal.domain.usecase.FetchAllConta
 import com.pseudoankit.contact_picker_core.internal.domain.usecase.FetchPaginatedContactsUseCase
 
 
-internal expect class ContactPickerModulePlatform {
-    internal val getContactPickerRepository: ContactPickerRepository
+internal expect class ContactPickerModule : ContactPickerModuleCommon {
+    internal override val getContactPickerRepository: ContactPickerRepository
 }
 
-internal class ContactPickerModule(
-    private val contactPickerModulePlatform: ContactPickerModulePlatform
-) {
+internal abstract class ContactPickerModuleCommon {
 
-    internal val getContactPickerRepository: ContactPickerRepository
-        get() {
-            return contactPickerModulePlatform.getContactPickerRepository
-        }
+    internal abstract val getContactPickerRepository: ContactPickerRepository
 
     internal val getFetchAllContactsUseCase: FetchAllContactsUseCase
         get() {
