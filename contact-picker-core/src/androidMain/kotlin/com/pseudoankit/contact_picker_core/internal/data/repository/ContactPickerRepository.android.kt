@@ -4,14 +4,18 @@ import android.annotation.SuppressLint
 import android.content.ContentResolver
 import android.database.Cursor
 import android.provider.ContactsContract
-import com.pseudoankit.contact_picker_core.Contact
-import com.pseudoankit.contact_picker_core.ContactResult
+import com.pseudoankit.contact_picker_core.model.Contact
+import com.pseudoankit.contact_picker_core.model.ContactResult
+import com.pseudoankit.contact_picker_core.model.FetchContactsPayload
 
 internal actual class ContactPickerRepository(
     private val contentResolver: ContentResolver
 ) {
 
-    internal actual suspend fun fetchContacts(): ContactResult {
+    internal actual suspend fun fetchContacts(
+        payload: FetchContactsPayload
+    ): ContactResult {
+
         val contactList = mutableListOf<Contact>()
 
         val uri = ContactsContract.Contacts.CONTENT_URI

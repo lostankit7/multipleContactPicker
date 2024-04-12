@@ -1,9 +1,4 @@
-package com.pseudoankit.contact_picker_core
-
-public data class Contact(
-    val name: String,
-    val number: String
-)
+package com.pseudoankit.contact_picker_core.model
 
 public sealed interface ContactResult {
     public data class Success(val contacts: List<Contact>) : ContactResult

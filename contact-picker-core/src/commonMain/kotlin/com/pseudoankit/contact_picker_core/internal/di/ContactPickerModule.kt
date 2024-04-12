@@ -6,9 +6,9 @@ import com.pseudoankit.contact_picker_core.internal.domain.usecase.FetchPaginate
 
 public expect class ContactPickerModule {
 
-    internal fun getFetchAllContactsUseCase(): FetchAllContactsUseCase
+    internal val getFetchAllContactsUseCase: FetchAllContactsUseCase
 
-    internal fun getFetchPaginatedContactsUseCase(): FetchPaginatedContactsUseCase
+    internal val getFetchPaginatedContactsUseCase: FetchPaginatedContactsUseCase
 
-    internal fun getContactPickerRepository(): ContactPickerRepository
+    internal val getContactPickerRepository: ContactPickerRepository
 }
